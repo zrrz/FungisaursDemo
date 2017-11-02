@@ -16,6 +16,8 @@ namespace UnityEngine.XR.iOS
                     m_HitTransform.position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
                     m_HitTransform.rotation = UnityARMatrixOps.GetRotation (hitResult.worldTransform);
                     Debug.Log (string.Format ("x:{0:0.######} y:{1:0.######} z:{2:0.######}", m_HitTransform.position.x, m_HitTransform.position.y, m_HitTransform.position.z));
+                    transform.LookAt(Camera.main.transform);
+                    transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
                     return true;
                 }
             }
@@ -26,6 +28,8 @@ namespace UnityEngine.XR.iOS
 		void Update () {
 			if (Input.touchCount > 0 && m_HitTransform != null)
 			{
+                if (!transform.GetChild(0).gameObject.activeSelf)
+                    transform.GetChild(0).gameObject.SetActive(true);
 				var touch = Input.GetTouch(0);
 				if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved)
 				{
