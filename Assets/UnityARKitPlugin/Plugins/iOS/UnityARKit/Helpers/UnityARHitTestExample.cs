@@ -6,13 +6,20 @@ namespace UnityEngine.XR.iOS
 	public class UnityARHitTestExample : MonoBehaviour
 	{
 		public Transform m_HitTransform;
+        public Transform xPlacementObject;
 
         bool HitTestWithResultType (ARPoint point, ARHitTestResultType resultTypes)
         {
             List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultTypes);
             if (hitResults.Count > 0) {
+                GameManager.instance.crexPlaced = true;
+                Debug.LogError("CREX PLACED");
+                GameManager.instance.crexModel.SetActive(true);
+                xPlacementObject.GetComponent<SpriteRenderer>().enabled = false;
+                GameObject.Find("Canvas/SummonText").GetComponent<UnityEngine.UI.Text>().enabled = false;
+                GameObject.Find("Canvas/DustCloud").GetComponent<Animator>().Play("DustAnim");
+
                 foreach (var hitResult in hitResults) {
-                    Debug.Log ("Got hit!");
                     m_HitTransform.position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
                     m_HitTransform.rotation = UnityARMatrixOps.GetRotation (hitResult.worldTransform);
                     Debug.Log (string.Format ("x:{0:0.######} y:{1:0.######} z:{2:0.######}", m_HitTransform.position.x, m_HitTransform.position.y, m_HitTransform.position.z));
@@ -23,43 +30,76 @@ namespace UnityEngine.XR.iOS
             }
             return false;
         }
+
+//        public string output = "";
+//        public string stack = "";
+//        void OnEnable() {
+//            Application.logMessageReceived += HandleLog;
+//        }
+//        void OnDisable() {
+//            Application.logMessageReceived -= HandleLog;
+//        }
+//        void HandleLog(string logString, string stackTrace, LogType type) {
+//            output = logString;
+//            stack = stackTrace;
+//        }
+//
+//        void OnGUI() {
+//            GUILayout.Label(output);
+//        }
 		
-		// Update is called once per frame
 		void Update () {
-			if (Input.touchCount > 0 && m_HitTransform != null)
-			{
-                if (!transform.GetChild(0).gameObject.activeSelf)
-                    transform.GetChild(0).gameObject.SetActive(true);
-				var touch = Input.GetTouch(0);
-				if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved)
-				{
-					var screenPosition = Camera.main.ScreenToViewportPoint(touch.position);
-					ARPoint point = new ARPoint {
-						x = screenPosition.x,
-						y = screenPosition.y
-					};
+//            if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+//            {
+//                return;
+//            }
+            if (!GameManager.instance.crexPlaced)
+            {
+                if (xPlacementObject.GetComponent<SpriteRenderer>().enabled == false)
+                    xPlacementObject.GetComponent<SpriteRenderer>().enabled = true;
+                // prioritize reults types
+                ARHitTestResultType[] resultTypes = {
+//                    ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent, 
+                    // if you want to use infinite planes use this:
+                    //ARHitTestResultType.ARHitTestResultTypeExistingPlane,
+//                    ARHitTestResultType.ARHitTestResultTypeHorizontalPlane, 
+                    ARHitTestResultType.ARHitTestResultTypeFeaturePoint
+                }; 
 
-                    // prioritize reults types
-                    ARHitTestResultType[] resultTypes = {
-                        ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent, 
-                        // if you want to use infinite planes use this:
-                        //ARHitTestResultType.ARHitTestResultTypeExistingPlane,
-                        ARHitTestResultType.ARHitTestResultTypeHorizontalPlane, 
-                        ARHitTestResultType.ARHitTestResultTypeFeaturePoint
-                    }; 
-					
-                    foreach (ARHitTestResultType resultType in resultTypes)
+                var screenPosition = Camera.main.ScreenToViewportPoint(new Vector3(Screen.width/2f, Screen.height/2f, 0f));
+                ARPoint point = new ARPoint {
+                    x = screenPosition.x,
+                    y = screenPosition.y
+                };
+                foreach (ARHitTestResultType resultType in resultTypes)
+                {
+                    List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface().HitTest(point, resultType);
+                    if (hitResults.Count > 0)
                     {
-                        if (HitTestWithResultType (point, resultType))
+                        foreach (var hitResult in hitResults)
                         {
-                            return;
+                            xPlacementObject.position = UnityARMatrixOps.GetPosition(hitResult.worldTransform);
+//                            xPlacementObject.rotation = UnityARMatrixOps.GetRotation(hitResult.worldTransform);
                         }
+                        GameManager.instance.summonText.GetComponent<UnityEngine.UI.Text>().text = "Tap The X to summon your Fungisaur!";
                     }
-				}
-			}
+                }
+                if (Input.GetButtonDown("Fire1") && m_HitTransform != null)
+    			{
+//    				var touch = Input.GetTouch(0);
+//    				if (touch.phase == TouchPhase.Began)
+//    				{
+                        foreach (ARHitTestResultType resultType in resultTypes)
+                        {
+                            if (HitTestWithResultType (point, resultType))
+                            {
+                                return;
+                            }
+                        }
+//    				}
+    			}
+            }
 		}
-
-	
 	}
 }
 

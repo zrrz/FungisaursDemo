@@ -20,11 +20,13 @@ namespace UnityEngine.XR.iOS
 			// ARKit ambient intensity ranges 0-2000
 			// Unity ambient intensity ranges 0-8 (for over-bright lights)
 			float newai = camera.lightEstimation.ambientIntensity;
-			l.intensity = newai / 1000.0f;
+//			l.intensity = newai / 1000.0f;
+            RenderSettings.ambientLight = new Color(newai / 1000.0f, newai / 1000.0f, newai / 1000.0f);
 
 			//Unity Light has functionality to filter the light color to correct temperature
 			//https://docs.unity3d.com/ScriptReference/Light-colorTemperature.html
-			l.colorTemperature = camera.lightEstimation.ambientColorTemperature;
+            l.colorTemperature = camera.lightEstimation.ambientColorTemperature;
+//            Debug.Log(newai / 1000.0f);
 		}
 
 		void OnDestroy() {
