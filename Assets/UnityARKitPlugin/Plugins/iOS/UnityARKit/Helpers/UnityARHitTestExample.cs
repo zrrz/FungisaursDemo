@@ -18,6 +18,7 @@ namespace UnityEngine.XR.iOS
                 xPlacementObject.GetComponent<SpriteRenderer>().enabled = false;
                 GameObject.Find("Canvas/SummonText").GetComponent<UnityEngine.UI.Text>().enabled = false;
                 GameObject.Find("Canvas/DustCloud").GetComponent<Animator>().Play("DustAnim");
+                GameManager.instance.crexModel.GetComponent<CrexBoop>().depressedTimer = 0f;
 
                 foreach (var hitResult in hitResults) {
                     m_HitTransform.position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
@@ -81,7 +82,7 @@ namespace UnityEngine.XR.iOS
                             xPlacementObject.position = UnityARMatrixOps.GetPosition(hitResult.worldTransform);
 //                            xPlacementObject.rotation = UnityARMatrixOps.GetRotation(hitResult.worldTransform);
                         }
-                        GameManager.instance.summonText.GetComponent<UnityEngine.UI.Text>().text = "Tap The X to summon your Fungisaur!";
+                        GameManager.instance.summonText.GetComponent<UnityEngine.UI.Text>().text = "Tap the X to summon your Fungisaur!";
                     }
                 }
                 if (Input.GetButtonDown("Fire1") && m_HitTransform != null)

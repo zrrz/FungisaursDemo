@@ -14,12 +14,27 @@ public class CrexBoop : MonoBehaviour {
 
     UnityARCameraManager cameraManager;
 
+	[SerializeField]
+    float timeTillDepressed = 30f;
+    [HideInInspector]
+    public float depressedTimer = 0f;
+
+    float sadAmount = 0f;
+
     void Start() {
         animator = GetComponentInChildren<Animator>();
         cameraManager = FindObjectOfType<UnityARCameraManager>();
     }
 
     void Update() {
+        depressedTimer += Time.deltaTime;
+        if(depressedTimer > timeTillDepressed) {
+            sadAmount = Mathf.Lerp(sadAmount, 1f, Time.deltaTime * 2f);
+        } else {
+            sadAmount = Mathf.Lerp(sadAmount, 0f, Time.deltaTime * 2f);
+        }
+        animator.SetFloat("Sad", sadAmount);
+
         transform.SetSiblingIndex(0);
         // get input from both joysticks
         input01 = singleJoystick.GetInputDirection();
@@ -40,7 +55,7 @@ public class CrexBoop : MonoBehaviour {
 
             transform.rotation = Quaternion.LookRotation(-movementDir);
 
-
+            depressedTimer = 0f;
 
 //            //Move player the same distance in each direction. Player must move in a circular motion.
 //
@@ -68,6 +83,8 @@ public class CrexBoop : MonoBehaviour {
     }
 
     public void Swipe(CrexDragHandler.DraggedDirection direction) {
+        depressedTimer = 0f;
+
         if (direction == CrexDragHandler.DraggedDirection.Left)
         {
             animator.SetTrigger("SwipeLeft");
@@ -79,6 +96,10 @@ public class CrexBoop : MonoBehaviour {
         if (direction == CrexDragHandler.DraggedDirection.Up)
         {
             animator.SetTrigger("SwipeUp");
+        }
+        if (direction == CrexDragHandler.DraggedDirection.Down)
+        {
+            animator.SetTrigger("Eat");
         }
         if (direction == CrexDragHandler.DraggedDirection.Tap)
         {
