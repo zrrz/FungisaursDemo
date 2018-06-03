@@ -29,8 +29,8 @@ public class Balloon : MonoBehaviour
 	void Start()
 	{
         rb = GetComponent<Rigidbody>();
+		animator = GetComponent<Animator>();
         floorLevel = GameManager.instance.crexModel.transform.Find("Plane").transform.position.y + .01f;
-        animator = GetComponent<Animator>();
 	}
 
 	void Update()
@@ -56,15 +56,27 @@ public class Balloon : MonoBehaviour
 	{
         CrexBoop crexBoop = collision.gameObject.GetComponent<CrexBoop>();
         if(crexBoop != null) {
-            Vector3 upForce = Vector3.up * Random.Range(knockUpForceMin, knockUpForceMax);
-            Vector3 xzForce = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * Random.Range(150f, 350f);
-            rb.AddForce(upForce + xzForce);
-            rb.AddTorque(Random.onUnitSphere * Random.Range(0.8f, 1.25f));
-			GameManager.instance.AddBalloonPoint();
-            crexBoop.Swipe(CrexDragHandler.DraggedDirection.Up);
-            animator.Play("BalloonHit", 0);
+            StartCoroutine(KnockUp());
+			crexBoop.Swipe(CrexDragHandler.DraggedDirection.Up);
         }
-	}
+    }
+
+    bool knockingUp = false;
+
+    IEnumerator KnockUp() {
+        if(!knockingUp) {
+            yield return new WaitForSeconds(0.1f);
+			Vector3 upForce = Vector3.up * Random.Range(knockUpForceMin, knockUpForceMax);
+			Vector3 xzForce = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * Random.Range(150f, 350f);
+			rb.AddTorque(Random.onUnitSphere * Random.Range(0.8f, 1.25f));
+			GameManager.instance.AddBalloonPoint();
+			animator.Play("BalloonHit", 0);
+            for (int i = 0; i < 10; i++) {
+                rb.AddForce((upForce + xzForce)/7f);
+                yield return new WaitForSeconds(0.02f);
+            }
+        }
+    }
 
     public void PlayPopAnimationAndDestroy() {
         popping = true;
