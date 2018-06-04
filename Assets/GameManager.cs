@@ -38,6 +38,19 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     UnityEngine.UI.Text foodGameToggleText;
 
+    [SerializeField]
+    Canvas canvas;
+
+	[SerializeField]
+	GameObject mainUI;
+    [SerializeField]
+    GameObject balloonGameUI;
+    [SerializeField]
+    GameObject feedGameUI;
+    [SerializeField]
+    GameObject scaleUI;
+
+
     public enum GameMode {
         Normal, Balloon, Feed, Scale, NoUI
     }
@@ -79,10 +92,14 @@ public class GameManager : MonoBehaviour {
 
                     // Find the difference in the distances between each frame.
                     float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
-                    crexModel.transform.localScale *= 1 + deltaMagnitudeDiff;
+                    crexModel.transform.localScale *= 1 + deltaMagnitudeDiff * Time.deltaTime * 2f;
                 }
                 break;
             case GameMode.NoUI:
+                if(delayedHideUI && Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Ended) {
+                    ToggleNoUIMode();
+                    delayedHideUI = false;
+                }
                 break;
             default:
                 Debug.LogError("Unknown game state");
@@ -122,15 +139,19 @@ public class GameManager : MonoBehaviour {
     public void ToggleBalloonGame() {
         switch(gameMode) {
             case GameMode.Balloon:
+                mainUI.SetActive(true);
+                balloonGameUI.SetActive(false);
                 SetGameMode(GameMode.Normal);
                 balloonGameScoreUI.enabled = false;
 				DespawnBalloon();
                 balloonGameToggleText.text = "Balloon Game Start";
                 break;
             case GameMode.Normal:
+                mainUI.SetActive(false);
+                balloonGameUI.SetActive(true);
                 SetGameMode(GameMode.Balloon);
                 balloonGameScoreUI.enabled = true;
-                SpawnBalloon();
+                //SpawnBalloon();
                 balloonGameToggleText.text = "Balloon Game End";
                 break;
             default:
@@ -144,12 +165,16 @@ public class GameManager : MonoBehaviour {
         switch (gameMode)
         {
             case GameMode.Feed:
+                mainUI.SetActive(true);
+                feedGameUI.SetActive(false);
                 SetGameMode(GameMode.Normal);
                 foodGameScoreUI.enabled = false;
                 DespawnFood();
                 foodGameToggleText.text = "Food Game Start";
                 break;
             case GameMode.Normal:
+                mainUI.SetActive(false);
+                feedGameUI.SetActive(true);
                 SetGameMode(GameMode.Feed);
                 foodGameScoreUI.enabled = true;
                 SpawnFood();
@@ -166,12 +191,16 @@ public class GameManager : MonoBehaviour {
         switch (gameMode)
         {
             case GameMode.Scale:
+                mainUI.SetActive(true);
+                scaleUI.SetActive(false);
                 SetGameMode(GameMode.Normal);
                 //foodGameScoreUI.enabled = false;
                 //DespawnFood();
                 //foodGameToggleText.text = "Food Game Start";
                 break;
             case GameMode.Normal:
+                mainUI.SetActive(false);
+                scaleUI.SetActive(true);
                 SetGameMode(GameMode.Scale);
                 //foodGameScoreUI.enabled = true;
                 //SpawnFood();
@@ -183,18 +212,32 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    bool delayedHideUI = false;
+
+    void DelayedHideUIState() {
+        delayedHideUI = true;
+    }
+
     public void ToggleNoUIMode()
     {
+        Debug.LogError("ToggleUI");
         switch (gameMode)
         {
             case GameMode.NoUI:
                 SetGameMode(GameMode.Normal);
+                canvas.enabled = true;
+                //canvas.gameObject.SetActive(true);
+                //mainUI.SetActive(true);
                 //foodGameScoreUI.enabled = false;
                 //DespawnFood();
                 //foodGameToggleText.text = "Food Game Start";
                 break;
             case GameMode.Normal:
                 SetGameMode(GameMode.NoUI);
+                Invoke("DelayedHideUIState", 0.1f);
+                canvas.enabled = false;
+                //canvas.gameObject.SetActive(false);
+                //mainUI.SetActive(false);
                 //foodGameScoreUI.enabled = true;
                 //SpawnFood();
                 //foodGameToggleText.text = "Food Game End";
@@ -203,6 +246,14 @@ public class GameManager : MonoBehaviour {
                 Debug.LogError("Unknown game state");
                 break;
         }
+    }
+
+    public void OpenOptionsUI() {
+        
+    }
+
+    public void CloseOptionsUI() {
+        
     }
 
     void SetGameMode(GameMode newMode) {
@@ -224,10 +275,14 @@ public class GameManager : MonoBehaviour {
         foodGameScoreUI.text = "Food Game Score: " + 0;
     }
 
-    void SpawnBalloon() {
+    public void SpawnBalloon() {
         Vector3 spawnPosition = crexModel.transform.position + Vector3.up * 1.5f;
         balloonObject = (GameObject)Instantiate(balloonPrefab, spawnPosition, Quaternion.identity);
         balloonGameScore = 0;
+    }
+
+    public void StartThrowFeed() {
+        
     }
 
     public void DespawnBalloon() {
