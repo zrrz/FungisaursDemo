@@ -57,7 +57,8 @@ public class Balloon : MonoBehaviour
         CrexBoop crexBoop = collision.gameObject.GetComponent<CrexBoop>();
         if(crexBoop != null) {
             StartCoroutine(KnockUp());
-			crexBoop.Swipe(CrexDragHandler.DraggedDirection.Up);
+            AudioManager.instance.Play("BalloonBounce");
+            crexBoop.Swipe(CrexDragHandler.DraggedDirection.Up);
         }
     }
 
