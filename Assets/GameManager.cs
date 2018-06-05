@@ -53,6 +53,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     GameObject scaleUI;
 
+    [SerializeField]
+    GameObject optionsMenu;
+
 
     public enum GameMode {
         Normal, Balloon, Feed, Scale, NoUI
@@ -138,6 +141,13 @@ public class GameManager : MonoBehaviour {
 
     public void ShowSummonText() {
         summonText.GetComponent<UnityEngine.UI.Text>().enabled = true;
+    }
+
+    public void ToggleOptionsMenu() {
+        if (optionsMenu.activeSelf)
+            optionsMenu.SetActive(false);
+        else
+            optionsMenu.SetActive(true);
     }
 
     public void ToggleBalloonGame() {

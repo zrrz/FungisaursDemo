@@ -15,8 +15,8 @@ public class AudioManager : MonoBehaviour {
     AudioSource uiSounds;
     AudioSource gameSounds;
 
-    bool muteSoundFX;
-    bool muteBackgroundMusic;
+    public bool muteSoundFX;
+    public bool muteBackgroundMusic;
     
     void Awake () {
 
@@ -52,6 +52,21 @@ public class AudioManager : MonoBehaviour {
             }
             
             soundMap.Add(sound.name, sound);
+
+            if (PlayerPrefs.HasKey("muteSoundFX")) {
+                muteSoundFX = (PlayerPrefs.GetInt("muteSoundFX") == 1);
+            } else {
+                PlayerPrefs.SetInt("muteSoundFX", 0);
+				PlayerPrefs.Save();
+            }
+
+            if (PlayerPrefs.HasKey("muteBackgroundMusic"))
+            {
+                muteBackgroundMusic = (PlayerPrefs.GetInt("muteBackgroundMusic") == 1);
+            } else {
+                PlayerPrefs.SetInt("muteBackgroundMusic", 0);
+                PlayerPrefs.Save();
+            }
         }
 
         Play("LoadingScreen_Theme");
@@ -86,9 +101,15 @@ public class AudioManager : MonoBehaviour {
 
     public void ToggleMuteMusic() {
         muteBackgroundMusic = !muteBackgroundMusic;
+
+        PlayerPrefs.SetInt("muteBackgroundMusic", 0);
+        PlayerPrefs.Save();
     }
 
     public void ToggleMuteSoundFX() {
         muteSoundFX = !muteSoundFX;
+
+        PlayerPrefs.SetInt("muteSoundFX", 0);
+        PlayerPrefs.Save();
     }
 }

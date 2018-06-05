@@ -14,8 +14,8 @@ public class CrexBoop : MonoBehaviour {
 
     UnityARCameraManager cameraManager;
 
-	[SerializeField]
-    float timeTillDepressed = 30f;
+	//[SerializeField]
+    float timeTillDepressed = 45f;
     [HideInInspector]
     public float depressedTimer = 0f;
 
@@ -51,11 +51,12 @@ public class CrexBoop : MonoBehaviour {
             Vector3 movementDir = cameraManager.m_camera.transform.TransformDirection(new Vector3(input01.x, 0, input01.y));
             movementDir.y = 0f;
 
-            transform.position += movementDir * moveSpeed * Time.deltaTime;
+            transform.position += movementDir * transform.localScale.magnitude * moveSpeed * Time.deltaTime;
 
             transform.rotation = Quaternion.LookRotation(-movementDir);
 
             depressedTimer = 0f;
+
 
 //            //Move player the same distance in each direction. Player must move in a circular motion.
 //
