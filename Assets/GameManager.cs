@@ -263,14 +263,6 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void OpenOptionsUI() {
-
-    }
-
-    public void CloseOptionsUI() {
-        
-    }
-
     void SetGameMode(GameMode newMode) {
         _gameMode = newMode;
     }
