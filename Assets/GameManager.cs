@@ -133,6 +133,7 @@ public class GameManager : MonoBehaviour {
         crexModel.transform.parent.localPosition = new Vector3(0f, .5f, 0f);
         crexModel.transform.localPosition = new Vector3(0f, .11f, 0f);
         crexModel.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+        AudioManager.instance.Play("Poof");
     }
 
     public void ShowSummonText() {
@@ -253,7 +254,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void OpenOptionsUI() {
-        
+
     }
 
     public void CloseOptionsUI() {
@@ -292,6 +293,7 @@ public class GameManager : MonoBehaviour {
 
     public void DespawnBalloon() {
         balloonObject.GetComponent<Balloon>().PlayPopAnimationAndDestroy();
+        AudioManager.instance.Play("BalloonPop");
         balloonObject = null;
         StartCoroutine(ShowBalloonGameResults());
         balloonGameScoreUI.text = "Balloon Game Score: " + 0;
@@ -311,14 +313,18 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator ShowBalloonGameResults() {
-		balloonGameResultsText.enabled = true;
+        balloonGameResultsText.enabled = true;
         balloonGameResultsText.text = "Your score in the Balloon Game was " + balloonGameScore;
-        if(balloonGameScore > 20)
+        if (balloonGameScore > 20) {
             balloonGameResultsText.text += ". Incredible!";
-        else if (balloonGameScore > 10)
+            AudioManager.instance.Play("Applause");
+        } else if (balloonGameScore > 10) {
             balloonGameResultsText.text += ". Pretty good!";
-        else if (balloonGameScore > 5)
+            AudioManager.instance.Play("TaDaSound");
+        } else if (balloonGameScore > 5) {
             balloonGameResultsText.text += ". Nice job!";
+            AudioManager.instance.Play("TaDaSound");
+        }
         Color color = balloonGameResultsText.color;
         color.a = 1f;
         balloonGameResultsText.color = color;
