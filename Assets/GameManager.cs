@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour {
 //    [HideInInspector]
     public bool crexPlaced = true;
 
+    [SerializeField]
     GameObject titleCard;
+    [SerializeField]
     public GameObject summonText;
 
     public static GameManager instance;
@@ -58,7 +60,7 @@ public class GameManager : MonoBehaviour {
 
 
     public enum GameMode {
-        Normal, Balloon, Feed, Scale, NoUI
+        Normal, Balloon, Feed, Scale, NoUI, Options
     }
 
     GameMode _gameMode;
@@ -68,8 +70,8 @@ public class GameManager : MonoBehaviour {
 
     void Start() {
         instance = this;
-        titleCard = GameObject.Find("Canvas/TitleCard");
-        summonText = GameObject.Find("Canvas/SummonText");
+        //titleCard = GameObject.Find("Canvas/TitleCard");
+        //summonText = GameObject.Find("Canvas/SummonText");
     }
 
 	private void Update()
@@ -106,6 +108,8 @@ public class GameManager : MonoBehaviour {
                     ToggleNoUIMode();
                     delayedHideUI = false;
                 }
+                break;
+            case GameMode.Options:
                 break;
             default:
                 Debug.LogError("Unknown game state");
@@ -144,10 +148,22 @@ public class GameManager : MonoBehaviour {
     }
 
     public void ToggleOptionsMenu() {
-        if (optionsMenu.activeSelf)
-            optionsMenu.SetActive(false);
-        else
-            optionsMenu.SetActive(true);
+        switch (gameMode)
+        {
+            case GameMode.Options:
+                mainUI.SetActive(true);
+                optionsMenu.SetActive(false);
+                SetGameMode(GameMode.Normal);
+                break;
+            case GameMode.Normal:
+                mainUI.SetActive(false);
+                optionsMenu.SetActive(true);
+                SetGameMode(GameMode.Options);
+                break;
+            default:
+                Debug.LogError("Unknown game state");
+                break;
+        }
     }
 
     public void ToggleBalloonGame() {

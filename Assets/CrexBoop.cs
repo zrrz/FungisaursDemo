@@ -89,22 +89,27 @@ public class CrexBoop : MonoBehaviour {
         if (direction == CrexDragHandler.DraggedDirection.Left)
         {
             animator.SetTrigger("SwipeLeft");
+            AudioManager.instance.Play("TailSwoosh0");
         }
         if (direction == CrexDragHandler.DraggedDirection.Right)
         {
             animator.SetTrigger("SwipeRight");
+            AudioManager.instance.Play("TailSwoosh0");
         }
         if (direction == CrexDragHandler.DraggedDirection.Up)
         {
             animator.SetTrigger("SwipeUp");
+            AudioManager.instance.Play("JumpLanding0");
         }
         if (direction == CrexDragHandler.DraggedDirection.Down)
         {
             animator.SetTrigger("Eat");
+            AudioManager.instance.Play("Biting0");
         }
         if (direction == CrexDragHandler.DraggedDirection.Tap)
         {
             animator.CrossFade("Crex_Boop", 0.25f);
+            AudioManager.instance.Play("RoarTap0");
         }
     }
 }

@@ -55,6 +55,8 @@ public class AudioManager : MonoBehaviour {
 
             if (PlayerPrefs.HasKey("muteSoundFX")) {
                 muteSoundFX = (PlayerPrefs.GetInt("muteSoundFX") == 1);
+                uiSounds.enabled = !muteSoundFX;
+                gameSounds.enabled = !muteSoundFX;
             } else {
                 PlayerPrefs.SetInt("muteSoundFX", 0);
 				PlayerPrefs.Save();
@@ -63,6 +65,7 @@ public class AudioManager : MonoBehaviour {
             if (PlayerPrefs.HasKey("muteBackgroundMusic"))
             {
                 muteBackgroundMusic = (PlayerPrefs.GetInt("muteBackgroundMusic") == 1);
+                backgroundMusic.enabled = !muteBackgroundMusic;
             } else {
                 PlayerPrefs.SetInt("muteBackgroundMusic", 0);
                 PlayerPrefs.Save();
@@ -79,13 +82,13 @@ public class AudioManager : MonoBehaviour {
         // }
         Sound sound = soundMap[name];
 
-        if(sound.soundType == Sound.SoundType.Music && muteBackgroundMusic == true) {
-            return;
-        } else if(sound.soundType == Sound.SoundType.FX && muteSoundFX == true) {
-            return;
-        } else if(sound.soundType == Sound.SoundType.UI && muteSoundFX == true) {
-            return;
-        }
+        //if(sound.soundType == Sound.SoundType.Music && muteBackgroundMusic == true) {
+        //    return;
+        //} else if(sound.soundType == Sound.SoundType.FX && muteSoundFX == true) {
+        //    return;
+        //} else if(sound.soundType == Sound.SoundType.UI && muteSoundFX == true) {
+        //    return;
+        //}
 
         sound.source.clip = sound.clip;
 
@@ -102,14 +105,19 @@ public class AudioManager : MonoBehaviour {
     public void ToggleMuteMusic() {
         muteBackgroundMusic = !muteBackgroundMusic;
 
-        PlayerPrefs.SetInt("muteBackgroundMusic", 0);
+        backgroundMusic.enabled = !muteBackgroundMusic;
+
+        PlayerPrefs.SetInt("muteBackgroundMusic", muteBackgroundMusic ? 1 : 0);
         PlayerPrefs.Save();
     }
 
     public void ToggleMuteSoundFX() {
         muteSoundFX = !muteSoundFX;
 
-        PlayerPrefs.SetInt("muteSoundFX", 0);
+        uiSounds.enabled = !muteSoundFX;
+        gameSounds.enabled = !muteSoundFX;
+
+        PlayerPrefs.SetInt("muteSoundFX", muteSoundFX ? 1 : 0);
         PlayerPrefs.Save();
     }
 }
