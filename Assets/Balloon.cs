@@ -48,7 +48,7 @@ public class Balloon : MonoBehaviour
 
         if (transform.position.y < floorLevel)
         {
-            GameManager.instance.ToggleBalloonGame();
+            GameManager.instance.EndBalloonGame();
         }
 	}
 

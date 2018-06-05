@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     UnityEngine.UI.Text balloonGameToggleText;
 
+	[SerializeField]
+	UnityEngine.UI.Image balloonGameSpawnButton;
+
     [Header("Feed Game")]
     [SerializeField]
     GameObject foodPrefab;
@@ -92,7 +95,7 @@ public class GameManager : MonoBehaviour {
 
                     // Find the difference in the distances between each frame.
                     float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
-                    crexModel.transform.localScale *= 1 + deltaMagnitudeDiff * Time.deltaTime * 2f;
+                    crexModel.transform.localScale *= 1 - deltaMagnitudeDiff * Time.deltaTime * 2f;
                 }
                 break;
             case GameMode.NoUI:
@@ -144,7 +147,7 @@ public class GameManager : MonoBehaviour {
                 SetGameMode(GameMode.Normal);
                 balloonGameScoreUI.enabled = false;
 				DespawnBalloon();
-                balloonGameToggleText.text = "Balloon Game Start";
+                //balloonGameToggleText.text = "Balloon Game Start";
                 break;
             case GameMode.Normal:
                 mainUI.SetActive(false);
@@ -152,7 +155,8 @@ public class GameManager : MonoBehaviour {
                 SetGameMode(GameMode.Balloon);
                 balloonGameScoreUI.enabled = true;
                 //SpawnBalloon();
-                balloonGameToggleText.text = "Balloon Game End";
+                //balloonGameToggleText.text = "Balloon Game End";
+                balloonGameSpawnButton.gameObject.SetActive(true);
                 break;
             default:
                 Debug.LogError("Unknown game state");
@@ -275,14 +279,15 @@ public class GameManager : MonoBehaviour {
         foodGameScoreUI.text = "Food Game Score: " + 0;
     }
 
+	public void StartThrowFeed() {
+		
+	}
+
     public void SpawnBalloon() {
         Vector3 spawnPosition = crexModel.transform.position + Vector3.up * 1.5f;
         balloonObject = (GameObject)Instantiate(balloonPrefab, spawnPosition, Quaternion.identity);
         balloonGameScore = 0;
-    }
-
-    public void StartThrowFeed() {
-        
+        balloonGameSpawnButton.gameObject.SetActive(false);
     }
 
     public void DespawnBalloon() {
@@ -292,12 +297,17 @@ public class GameManager : MonoBehaviour {
         balloonGameScoreUI.text = "Balloon Game Score: " + 0;
     }
 
+    public void EndBalloonGame() {
+        DespawnBalloon();
+        balloonGameSpawnButton.gameObject.SetActive(true);
+    }
+
     public void AddBalloonPoint() {
         balloonGameScore++;
         if (balloonGameScoreUI == null)
             Debug.LogError("balloonGameScoreUI is null");
         else
-            balloonGameScoreUI.text = "Balloon Game Score: " + balloonGameScore.ToString();
+            balloonGameScoreUI.text = "Score: " + balloonGameScore.ToString();
     }
 
     IEnumerator ShowBalloonGameResults() {
