@@ -58,13 +58,19 @@ public class GameManager : MonoBehaviour {
     GameObject feedGameUI;
     [SerializeField]
     GameObject scaleUI;
+    [SerializeField]
+    GameObject characterSelectScreenUI;
+    [SerializeField]
+    GameObject characterInfoScreenUI;
 
     [SerializeField]
-    GameObject optionsMenu;
+    GameObject optionsMenu1;
+    [SerializeField]
+    GameObject optionsMenu2;
 
 
     public enum GameMode {
-        Normal, Balloon, Feed, Scale, NoUI, Options
+        Normal, Balloon, Feed, Scale, NoUI, Options, CharacterSelect, CharacterInfo
     }
 
     GameMode _gameMode;
@@ -151,23 +157,69 @@ public class GameManager : MonoBehaviour {
         summonText.GetComponent<UnityEngine.UI.Text>().enabled = true;
     }
 
-    public void ToggleOptionsMenu() {
-        switch (gameMode)
+    public void ToggleCharacterSelectScreen()
+    {
+        if (characterSelectScreenUI.activeSelf)
         {
-            case GameMode.Options:
-                mainUI.SetActive(true);
-                optionsMenu.SetActive(false);
-                SetGameMode(GameMode.Normal);
-                break;
-            case GameMode.Normal:
-                mainUI.SetActive(false);
-                optionsMenu.SetActive(true);
-                SetGameMode(GameMode.Options);
-                break;
-            default:
-                Debug.LogError("Unknown game state");
-                break;
+            characterSelectScreenUI.SetActive(false);
         }
+        else
+        {
+            characterSelectScreenUI.SetActive(true);
+        }
+    }
+
+    public void ToggleSplashScreen()
+    {
+        if (titleCard.activeSelf)
+        {
+            titleCard.SetActive(false);
+        }
+        else
+        {
+            titleCard.SetActive(true);
+        }
+    }
+
+    public void ToggleCharacterInfoScreen()
+    {
+        if (characterInfoScreenUI.activeSelf)
+        {
+            characterInfoScreenUI.SetActive(false);
+        }
+        else
+        {
+            characterInfoScreenUI.SetActive(true);
+        }
+    }
+
+    public void ToggleOptionsMenu() {
+        if(optionsMenu1.activeSelf)
+        {
+            optionsMenu1.SetActive(false);
+            optionsMenu2.SetActive(false);
+        } else
+        {
+            optionsMenu1.SetActive(true);
+            optionsMenu2.SetActive(true);
+        }
+
+        //switch (gameMode)
+        //{
+        //    case GameMode.Options:
+        //        //mainUI.SetActive(true);
+        //        optionsMenu.SetActive(false);
+        //        //SetGameMode(GameMode.Normal);
+        //        break;
+        //    case GameMode.Normal:
+        //        //mainUI.SetActive(false);
+        //        optionsMenu.SetActive(true);
+        //        //SetGameMode(GameMode.Options);
+        //        break;
+        //    default:
+        //        Debug.LogError("Unknown game state");
+        //        break;
+        //}
     }
 
     public void ToggleBalloonGame() {
