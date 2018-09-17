@@ -110,10 +110,10 @@ TextureImporter:
       name: fungi_logo_0
       rect:
         serializedVersion: 2
-        x: 50
-        y: 1259
-        width: 1142
-        height: 384
+        x: 47
+        y: 25
+        width: 1140
+        height: 381
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,7 +121,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e10d506ff02ed548a02a0e6ddfdb4ca
+      spriteID: 5dcd3848f45aa4d1a8b1852a398a62d3
       vertices: []
       indices: 
       edges: []

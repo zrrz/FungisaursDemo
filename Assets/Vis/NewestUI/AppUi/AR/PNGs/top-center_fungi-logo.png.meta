@@ -110,10 +110,10 @@ TextureImporter:
       name: top-center_fungi-logo_0
       rect:
         serializedVersion: 2
-        x: 533
-        y: 1875
-        width: 188
-        height: 213
+        x: 23
+        y: 24
+        width: 186
+        height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,7 +121,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa9321e11d27b41478ff2925ea2353b0
+      spriteID: ed6c6d7cd33b049b686289321da533c2
       vertices: []
       indices: 
       edges: []

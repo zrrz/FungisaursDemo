@@ -110,10 +110,10 @@ TextureImporter:
       name: top-center_morning_0
       rect:
         serializedVersion: 2
-        x: 500
-        y: 1876
-        width: 244
-        height: 294
+        x: 30
+        y: 28
+        width: 243
+        height: 290
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,7 +121,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffd99d8e7c073b642b540ed20ec8ceda
+      spriteID: fe11d1131b023490baaf39da33d9c77f
       vertices: []
       indices: 
       edges: []

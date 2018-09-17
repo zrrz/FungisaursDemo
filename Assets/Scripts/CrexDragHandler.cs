@@ -16,9 +16,9 @@ public class CrexDragHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if (!GameManager.instance.crexPlaced || GameManager.instance.gameMode == GameManager.GameMode.Options)
             return;
         
-        Debug.Log("Press position + " + eventData.pressPosition);
-        Debug.Log("End position + " + eventData.position);
-        Debug.LogError((eventData.position - eventData.pressPosition).magnitude);
+        //Debug.Log("Press position + " + eventData.pressPosition);
+        //Debug.Log("End position + " + eventData.position);
+        //Debug.LogError((eventData.position - eventData.pressPosition).magnitude);
         if ((eventData.position - eventData.pressPosition).magnitude < 25f)
         {
             DraggedDirection direction = DraggedDirection.Tap;
@@ -27,7 +27,7 @@ public class CrexDragHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         else
         {
             Vector3 dragVectorDirection = (eventData.position - eventData.pressPosition).normalized;
-            Debug.Log("norm + " + dragVectorDirection);
+            //Debug.Log("norm + " + dragVectorDirection);
             DraggedDirection direction = GetDragDirection(dragVectorDirection);
             crexBoop.Swipe(direction);
         }

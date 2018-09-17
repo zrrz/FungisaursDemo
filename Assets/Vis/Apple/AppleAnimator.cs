@@ -68,7 +68,8 @@ public class AppleAnimator : MonoBehaviour {
 
         crexBoop.Swipe(CrexDragHandler.DraggedDirection.Down);
         yield return new WaitForSeconds(1f);
-        GameManager.instance.DespawnFood();
+        //GameManager.instance.DespawnFood();
+        Destroy(gameObject);
         crexBoop.movementLocked = false;
     }
 }

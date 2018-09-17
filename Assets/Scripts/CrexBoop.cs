@@ -14,6 +14,9 @@ public class CrexBoop : MonoBehaviour {
 
     UnityARCameraManager cameraManager;
 
+    [SerializeField]
+    bool getsSad = true;
+
 	//[SerializeField]
     float timeTillDepressed = 45f;
     [HideInInspector]
@@ -33,13 +36,15 @@ public class CrexBoop : MonoBehaviour {
             animator.SetFloat("MoveSpeed", 0f);
             return;
         }
-        depressedTimer += Time.deltaTime;
-        if(depressedTimer > timeTillDepressed) {
-            sadAmount = Mathf.Lerp(sadAmount, 1f, Time.deltaTime * 2f);
-        } else {
-            sadAmount = Mathf.Lerp(sadAmount, 0f, Time.deltaTime * 2f);
+        if(getsSad) {
+			depressedTimer += Time.deltaTime;
+			if(depressedTimer > timeTillDepressed) {
+				sadAmount = Mathf.Lerp(sadAmount, 1f, Time.deltaTime * 2f);
+			} else {
+				sadAmount = Mathf.Lerp(sadAmount, 0f, Time.deltaTime * 2f);
+			}
+			animator.SetFloat("Sad", sadAmount);
         }
-        animator.SetFloat("Sad", sadAmount);
 
         transform.SetSiblingIndex(0);
         // get input from both joysticks

@@ -16,8 +16,8 @@ namespace UnityEngine.XR.iOS
                 Debug.LogError("CREX PLACED");
                 GameManager.instance.crexModel.SetActive(true);
                 xPlacementObject.GetComponent<SpriteRenderer>().enabled = false;
-                GameObject.Find("Canvas/SummonText").GetComponent<UnityEngine.UI.Text>().enabled = false;
-                GameObject.Find("Canvas/DustCloud").GetComponent<Animator>().Play("DustAnim");
+                GameObject.Find("Canvas/Main/SummonText").GetComponent<UnityEngine.UI.Text>().enabled = false;
+                GameObject.Find("Canvas/Main/DustCloud").GetComponent<Animator>().Play("DustAnim");
                 GameManager.instance.crexModel.GetComponent<CrexBoop>().depressedTimer = 0f;
                 AudioManager.instance.Play("Poof");
 

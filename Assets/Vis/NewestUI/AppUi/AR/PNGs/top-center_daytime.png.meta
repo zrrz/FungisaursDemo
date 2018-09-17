@@ -110,10 +110,10 @@ TextureImporter:
       name: top-center_daytime_0
       rect:
         serializedVersion: 2
-        x: 500
-        y: 1876
-        width: 244
-        height: 294
+        x: 25
+        y: 33
+        width: 243
+        height: 290
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,7 +121,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68a8e6b4b4e1d4141a8b2a78c53d07e0
+      spriteID: c858ec614d6bd4cc790b5b14bfa8f2a7
       vertices: []
       indices: 
       edges: []

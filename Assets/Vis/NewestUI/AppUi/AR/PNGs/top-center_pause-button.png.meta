@@ -111,18 +111,18 @@ TextureImporter:
       name: top-center_pause-button_0
       rect:
         serializedVersion: 2
-        x: 570
-        y: 1960
-        width: 103
-        height: 117
+        x: 18
+        y: 10
+        width: 101
+        height: 115
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b43d3871c6830234fa60ef78efe8a8b3
+      spriteID: a8dc0a842d1354de89e95d39bc0958c2
       vertices: []
       indices: 
       edges: []

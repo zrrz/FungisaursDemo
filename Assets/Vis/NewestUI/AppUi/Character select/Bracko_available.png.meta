@@ -110,10 +110,10 @@ TextureImporter:
       name: Bracko_available_0
       rect:
         serializedVersion: 2
-        x: 730
-        y: 779
-        width: 258
-        height: 286
+        x: 710
+        y: 759
+        width: 288
+        height: 306
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -111,6 +111,8 @@ public class GameManager : MonoBehaviour {
                     // Find the difference in the distances between each frame.
                     float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
                     crexModel.transform.localScale *= 1 - deltaMagnitudeDiff * Time.deltaTime * 2f;
+                    if (crexModel.transform.localScale.magnitude < 0.5196152f)
+                        crexModel.transform.localScale = Vector3.one * 0.3f;
                 }
                 break;
             case GameMode.NoUI:
@@ -198,10 +200,14 @@ public class GameManager : MonoBehaviour {
         {
             optionsMenu1.SetActive(false);
             optionsMenu2.SetActive(false);
+            optionsMenu1.transform.parent.GetChild(0).gameObject.SetActive(true);
+            optionsMenu2.transform.parent.GetChild(0).gameObject.SetActive(true);
         } else
         {
             optionsMenu1.SetActive(true);
             optionsMenu2.SetActive(true);
+            optionsMenu1.transform.parent.GetChild(0).gameObject.SetActive(false);
+            optionsMenu2.transform.parent.GetChild(0).gameObject.SetActive(false);
         }
 
         //switch (gameMode)
@@ -341,7 +347,7 @@ public class GameManager : MonoBehaviour {
 
     void SpawnFood()
     {
-        Vector3 spawnPosition = crexModel.transform.position + crexModel.transform.lossyScale.magnitude * new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * 2.2f;
+        Vector3 spawnPosition = crexModel.transform.position + crexModel.transform.lossyScale.magnitude * -crexModel.transform.forward;// new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * 2.2f;
         foodObject = (GameObject)Instantiate(foodPrefab, spawnPosition, Quaternion.identity);
         foodObject.transform.rotation = Random.rotation;
         foodGameScore = 0;
@@ -372,11 +378,13 @@ public class GameManager : MonoBehaviour {
     }
 
     public void DespawnBalloon() {
-        balloonObject.GetComponent<Balloon>().PlayPopAnimationAndDestroy();
-        AudioManager.instance.Play("BalloonPop");
-        balloonObject = null;
-        StartCoroutine(ShowBalloonGameResults());
-        balloonGameScoreUI.text = "Balloon Game Score: " + 0;
+        if(balloonObject != null) {
+			balloonObject.GetComponent<Balloon>().PlayPopAnimationAndDestroy();
+			AudioManager.instance.Play("BalloonPop");
+			balloonObject = null;
+        }
+		StartCoroutine(ShowBalloonGameResults());
+		balloonGameScoreUI.text = "Balloon Game Score: " + 0;
     }
 
     public void EndBalloonGame() {
