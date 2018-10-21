@@ -18,7 +18,7 @@ public class CrexBoop : MonoBehaviour {
     bool getsSad = true;
 
 	//[SerializeField]
-    float timeTillDepressed = 45f;
+    float timeTillDepressed = 20f;
     [HideInInspector]
     public float depressedTimer = 0f;
 

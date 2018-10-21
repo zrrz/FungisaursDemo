@@ -253,6 +253,13 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void ClearApples() {
+        FoodAnimator[] apples = FindObjectsOfType<FoodAnimator>();
+        for (int i = 0; i < apples.Length; i++) {
+            Destroy(apples[i].gameObject);
+        }
+    }
+
     public void ToggleFeedGame()
     {
         switch (gameMode)
@@ -347,7 +354,7 @@ public class GameManager : MonoBehaviour {
 
     void SpawnFood()
     {
-        Vector3 spawnPosition = crexModel.transform.position + crexModel.transform.lossyScale.magnitude * -crexModel.transform.forward;// new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * 2.2f;
+        Vector3 spawnPosition = crexModel.transform.position + crexModel.transform.lossyScale.magnitude * -crexModel.transform.forward * 1.2f;// new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * 2.2f;
         foodObject = (GameObject)Instantiate(foodPrefab, spawnPosition, Quaternion.identity);
         foodObject.transform.rotation = Random.rotation;
         foodGameScore = 0;
