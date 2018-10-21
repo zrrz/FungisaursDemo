@@ -5,9 +5,16 @@ using UnityEngine.EventSystems;
 
 public class FeedButton : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerUpHandler {
 
-    GameObject spawnedApple;
+    GameObject spawnedFood;
     [SerializeField]
-    GameObject applePrefab;
+    GameObject foodPrefab;
+
+    public enum FoodType {
+        Apple, Corn
+    }
+
+    [SerializeField]
+    FoodType foodType;
 
 	void Start () {
 		
@@ -18,7 +25,7 @@ public class FeedButton : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 	}
 
     void Click() {
-        GameManager.instance.StartThrowFeed();
+        GameManager.instance.StartThrowFeed(foodType);
         //AudioManager.instance.Play("PlayButton");
     }
 
@@ -29,34 +36,34 @@ public class FeedButton : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnDrag(PointerEventData eventData)
     {
-        if(spawnedApple == null) {
+        if(spawnedFood == null) {
 			foreach(GameObject obj in eventData.hovered) {
                 if (obj == eventData.pointerDrag)
 					return;
 			}
 			
-			SpawnApple();
+            SpawnFood();
         }
         else {
             float crexDistance = Vector3.Distance(Camera.main.transform.position, GameManager.instance.crexModel.transform.position);
             Vector3 applePosition = 
                 Camera.main.transform.position 
                       + Camera.main.ScreenPointToRay(eventData.position).direction.normalized * crexDistance;
-            spawnedApple.transform.position = applePosition;
+            spawnedFood.transform.position = applePosition;
         }
     }
 
-    void SpawnApple() {
-        Debug.LogError("SpawnApple");
-        spawnedApple = (GameObject)Instantiate(applePrefab);
+    void SpawnFood() {
+        Debug.LogError("Spawn Food");
+        spawnedFood = (GameObject)Instantiate(foodPrefab);
         //GameManager.instance.feedGameSpawnButton.raycastTarget = false;
         GameManager.instance.feedGameSpawnButton.enabled = false;
-        GameManager.instance.foodObject = spawnedApple;
+        GameManager.instance.foodObject = spawnedFood;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        spawnedApple = null;
+        spawnedFood = null;
         //foreach (GameObject obj in eventData.hovered)
         //{
         //    if (obj == eventData.lastPress)

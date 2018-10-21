@@ -313,8 +313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd02b261513b484da6b3465b432f7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applePrefab: {fileID: 1078372732033232, guid: dafd77a4e6df6407685425a197905957,
-    type: 2}
+  foodPrefab: {fileID: 1078372732033232, guid: dafd77a4e6df6407685425a197905957, type: 2}
+  foodType: 0
 --- !u!1 &40271713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1535,6 +1535,7 @@ GameObject:
   - component: {fileID: 220727513}
   - component: {fileID: 220727512}
   - component: {fileID: 220727511}
+  - component: {fileID: 220727514}
   m_Layer: 5
   m_Name: CornButton
   m_TagString: Untagged
@@ -1582,7 +1583,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 0.5647059}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1594,22 +1595,11 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 220727512}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 685202691}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 677409532}
         m_MethodName: Play
         m_Mode: 5
@@ -1657,6 +1647,19 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 220727509}
   m_CullTransparentMesh: 0
+--- !u!114 &220727514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 220727509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd02b261513b484da6b3465b432f7f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodPrefab: {fileID: 1325337445087800, guid: 13a06ec5ab92b404d88a2879186addb5, type: 2}
+  foodType: 1
 --- !u!1 &231669060
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,6 +2469,34 @@ Transform:
   - {fileID: 570899005}
   m_Father: {fileID: 1666782449}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &317805093
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 317805094}
+  m_Layer: 0
+  m_Name: FoodSpawnLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &317805094
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 317805093}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.41, z: -3.79}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1823641681}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &329734230
 GameObject:
@@ -6361,7 +6392,9 @@ MonoBehaviour:
   balloonGameResultsText: {fileID: 794682929}
   balloonGameToggleText: {fileID: 0}
   balloonGameSpawnButton: {fileID: 2054249209}
-  foodPrefab: {fileID: 1078372732033232, guid: dafd77a4e6df6407685425a197905957, type: 2}
+  applePrefab: {fileID: 1078372732033232, guid: dafd77a4e6df6407685425a197905957,
+    type: 2}
+  cornPrefab: {fileID: 1325337445087800, guid: 13a06ec5ab92b404d88a2879186addb5, type: 2}
   foodGameScoreUI: {fileID: 0}
   foodGameResultsText: {fileID: 0}
   foodGameToggleText: {fileID: 0}
@@ -7024,6 +7057,7 @@ MonoBehaviour:
   getsSad: 1
   depressedTimer: 0
   movementLocked: 1
+  foodSpawnLocation: {fileID: 0}
 --- !u!1 &801090684
 GameObject:
   m_ObjectHideFlags: 0
@@ -16711,6 +16745,7 @@ Transform:
   - {fileID: 605893448}
   - {fileID: 1576215543}
   - {fileID: 1572903812}
+  - {fileID: 317805094}
   m_Father: {fileID: 1863706853}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -16760,6 +16795,7 @@ MonoBehaviour:
   getsSad: 1
   depressedTimer: 0
   movementLocked: 0
+  foodSpawnLocation: {fileID: 317805094}
 --- !u!95 &1823641685
 Animator:
   serializedVersion: 3

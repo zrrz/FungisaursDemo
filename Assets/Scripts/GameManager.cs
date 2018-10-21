@@ -33,7 +33,9 @@ public class GameManager : MonoBehaviour {
 
     [Header("Feed Game")]
     [SerializeField]
-    GameObject foodPrefab;
+    GameObject applePrefab;
+    [SerializeField]
+    GameObject cornPrefab;
     [System.NonSerialized]
     public GameObject foodObject = null;
     int foodGameScore = 0;
@@ -352,13 +354,20 @@ public class GameManager : MonoBehaviour {
         _gameMode = newMode;
     }
 
-    void SpawnFood()
+    void SpawnFood(FeedButton.FoodType foodType)
     {
-        Vector3 spawnPosition = crexModel.transform.position + crexModel.transform.lossyScale.magnitude * -crexModel.transform.forward * 1.2f;// new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * 2.2f;
-        foodObject = (GameObject)Instantiate(foodPrefab, spawnPosition, Quaternion.identity);
+        GameObject foodToSpawn = null;
+        if(foodType == FeedButton.FoodType.Apple) {
+            foodToSpawn = applePrefab;
+        } else if(foodType == FeedButton.FoodType.Corn) {
+            foodToSpawn = cornPrefab;
+        }
+        Vector3 spawnPosition = crexModel.GetComponent<CrexBoop>().foodSpawnLocation.position;
+        foodObject = (GameObject)Instantiate(foodToSpawn, spawnPosition, Quaternion.identity);
         foodObject.transform.rotation = Random.rotation;
         foodGameScore = 0;
         GameManager.instance.feedGameSpawnButton.enabled = false;
+        foodObject.GetComponent<FoodAnimator>().EatFood(crexModel.GetComponent<CrexBoop>());
     }
 
     public void DespawnFood()
@@ -373,8 +382,8 @@ public class GameManager : MonoBehaviour {
         GameManager.instance.feedGameSpawnButton.enabled = true;
     }
 
-	public void StartThrowFeed() {
-        SpawnFood();
+    public void StartThrowFeed(FeedButton.FoodType foodType) {
+        SpawnFood(foodType);
 	}
 
     public void SpawnBalloon() {

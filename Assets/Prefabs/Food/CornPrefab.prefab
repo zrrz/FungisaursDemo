@@ -123,7 +123,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: f8ffa13f2598842b2bfbff98203dee32, type: 3}
   foodNormals:
   - {fileID: 2800000, guid: 4540b723faa464ba09740a2b4c599601, type: 3}
-  - {fileID: 2800000, guid: 4540b723faa464ba09740a2b4c599601, type: 3}
+  - {fileID: 2800000, guid: 6339c0fc00f0140b2bfd6cead4d3829e, type: 3}
   - {fileID: 2800000, guid: 6339c0fc00f0140b2bfd6cead4d3829e, type: 3}
   skinnedMeshRenderer: {fileID: 137898748909775646}
 --- !u!135 &135253817489098886

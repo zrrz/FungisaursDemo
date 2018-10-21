@@ -26,6 +26,8 @@ public class CrexBoop : MonoBehaviour {
 
     public bool movementLocked = false;
 
+    public Transform foodSpawnLocation;
+
     void Start() {
         animator = GetComponentInChildren<Animator>();
         cameraManager = FindObjectOfType<UnityARCameraManager>();

@@ -31,21 +31,21 @@ public class FoodAnimator : MonoBehaviour {
 
         if (state == State.Full) {
             blendshapeWeight = 0f;
-            if(foodTextures[0] != null)
+            if(foodTextures.Length >= 1 && foodTextures[0] != null)
                 foodTexture = foodTextures[0];
-            if (foodNormals[0] != null)
+            if(foodNormals.Length >= 1 && foodNormals[0] != null)
                 foodNormal = foodNormals[0];
         } else if(state == State.Half) {
             blendshapeWeight = 50f;
-            if (foodTextures[1] != null)
+            if (foodTextures.Length >= 2 && foodTextures[1] != null)
                 foodTexture = foodTextures[1];
-            if (foodNormals[1] != null)
+            if (foodNormals.Length >= 2 && foodNormals[1] != null)
                 foodNormal = foodNormals[1];
         } else if(state == State.Quarter) {
             blendshapeWeight = 100f;
-            if (foodTextures[2] != null)
+            if (foodTextures.Length >= 3 && foodTextures[2] != null)
                 foodTexture = foodTextures[2];
-            if (foodNormals[2] != null)
+            if (foodNormals.Length >= 3 && foodNormals[2] != null)
                 foodNormal = foodNormals[2];
         }
 
@@ -59,11 +59,15 @@ public class FoodAnimator : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
         CrexBoop crexBoop = collision.gameObject.GetComponent<CrexBoop>();
+        EatFood(crexBoop);
+    }
+
+    public void EatFood(CrexBoop crexBoop) {
         if (crexBoop != null)
         {
-            if(!eating)
+            if (!eating)
                 StartCoroutine(Eat(crexBoop));
-        }
+        } 
     }
 
     bool eating = false;
