@@ -45,7 +45,7 @@ public class FeedButton : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             SpawnFood();
         }
         else {
-            float crexDistance = Vector3.Distance(Camera.main.transform.position, GameManager.instance.crexModel.transform.position);
+            float crexDistance = Vector3.Distance(Camera.main.transform.position, GameManager.instance.GetCurrentFungisaur().transform.position);
             Vector3 applePosition = 
                 Camera.main.transform.position 
                       + Camera.main.ScreenPointToRay(eventData.position).direction.normalized * crexDistance;

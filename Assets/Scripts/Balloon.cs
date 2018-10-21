@@ -26,11 +26,14 @@ public class Balloon : MonoBehaviour
 
     bool popping = false;
 
+    float gravityScale = 1f;
+
 	void Start()
 	{
         rb = GetComponent<Rigidbody>();
 		animator = GetComponent<Animator>();
-        floorLevel = GameManager.instance.crexModel.transform.Find("Plane").transform.position.y + .01f;
+        floorLevel = GameManager.instance.GetCurrentFungisaur().transform.Find("Plane").transform.position.y + .01f;
+        Physics.gravity = new Vector3(0f, -9.81f, 0f);
 	}
 
 	void Update()
@@ -62,13 +65,36 @@ public class Balloon : MonoBehaviour
         }
     }
 
-    bool knockingUp = false;
+    //Vector3 velocity = Vector3.zero;
+
+	//private void FixedUpdate()
+	//{
+ //       velocity += 
+
+ //       GetComponent<Rigidbody>().position += velocity*Time.fixedDeltaTime;
+	//}
+
+	bool knockingUp = false;
 
     IEnumerator KnockUp() {
+        float xzRangeMin = 150f;
+        float xzRangeMax = 350f;
+
+        int ballonGameScore = GameManager.instance.balloonGameScore;
+
+        if(ballonGameScore > 5) {
+            xzRangeMin = 150f * (1f + ballonGameScore * 0.07f);
+            xzRangeMax = 350f * (1f + ballonGameScore * 0.1f);
+        }
+        if(ballonGameScore > 10) {
+            gravityScale = 1f + (ballonGameScore * 0.1f);
+            Physics.gravity = new Vector3(0f, -9.81f, 0f) * gravityScale;
+        }
+
         if(!knockingUp) {
             yield return new WaitForSeconds(0.1f);
-			Vector3 upForce = Vector3.up * Random.Range(knockUpForceMin, knockUpForceMax);
-			Vector3 xzForce = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * Random.Range(150f, 350f);
+            Vector3 upForce = Vector3.up * Random.Range(knockUpForceMin, knockUpForceMax) * (1f + ballonGameScore * 0.03f);
+            Vector3 xzForce = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * Random.Range(xzRangeMin, xzRangeMax);
 			rb.AddTorque(Random.onUnitSphere * Random.Range(0.8f, 1.25f));
 			GameManager.instance.AddBalloonPoint();
 			animator.Play("BalloonHit", 0);

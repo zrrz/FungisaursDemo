@@ -14,11 +14,11 @@ namespace UnityEngine.XR.iOS
             if (hitResults.Count > 0) {
                 GameManager.instance.crexPlaced = true;
                 Debug.LogError("CREX PLACED");
-                GameManager.instance.crexModel.SetActive(true);
+                GameManager.instance.GetCurrentFungisaur().SetActive(true);
                 xPlacementObject.GetComponent<SpriteRenderer>().enabled = false;
                 GameObject.Find("Canvas/Main/SummonText").GetComponent<UnityEngine.UI.Text>().enabled = false;
                 GameObject.Find("Canvas/Main/DustCloud").GetComponent<Animator>().Play("DustAnim");
-                GameManager.instance.crexModel.GetComponent<CrexBoop>().depressedTimer = 0f;
+                GameManager.instance.GetCurrentFungisaur().GetComponent<CrexBoop>().depressedTimer = 0f;
                 AudioManager.instance.Play("Poof");
 
                 foreach (var hitResult in hitResults) {

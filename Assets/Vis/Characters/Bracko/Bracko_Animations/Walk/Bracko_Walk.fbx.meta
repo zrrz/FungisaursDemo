@@ -1,0 +1,306 @@
+fileFormatVersion: 2
+guid: d44161479d6b94a7db635ef348156396
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bracko_GameModel7:Body1
+    100002: Bracko_GameModel7:Body2
+    100004: Bracko_GameModel7:Body3
+    100006: Bracko_GameModel7:Bracko_Base
+    100008: Bracko_GameModel7:Bracko_body_geo
+    100010: Bracko_GameModel7:Bracko_Mesh
+    100012: Bracko_GameModel7:Bracko_Tongue
+    100014: Bracko_GameModel7:Chest
+    100016: Bracko_GameModel7:Chest_front
+    100018: Bracko_GameModel7:ffd1Lattice
+    100020: Bracko_GameModel7:Head_Base
+    100022: Bracko_GameModel7:Head_Top_End
+    100024: Bracko_GameModel7:Head_Top_Start
+    100026: Bracko_GameModel7:Hip
+    100028: Bracko_GameModel7:Jaw
+    100030: Bracko_GameModel7:Jaw_End_Bottom
+    100032: Bracko_GameModel7:Jaw_End_Top
+    100034: Bracko_GameModel7:Jaw_Mid_Bottom
+    100036: Bracko_GameModel7:Jaw_Start_Bottom
+    100038: Bracko_GameModel7:Jaw_Start_Top
+    100040: Bracko_GameModel7:joint1
+    100042: Bracko_GameModel7:joint2
+    100044: Bracko_GameModel7:joint3
+    100046: Bracko_GameModel7:joint4
+    100048: Bracko_GameModel7:joint5
+    100050: Bracko_GameModel7:L_bk_Ankle
+    100052: Bracko_GameModel7:L_bk_AnkleBot_back_end
+    100054: Bracko_GameModel7:L_bk_Anklebot_front_end
+    100056: Bracko_GameModel7:L_bk_Anklebot_Main
+    100058: Bracko_GameModel7:L_bk_Knee
+    100060: Bracko_GameModel7:L_Eye
+    100062: Bracko_GameModel7:L_Eye 1
+    100064: Bracko_GameModel7:L_front_Ankle
+    100066: Bracko_GameModel7:L_front_bk_AnkleBot_back_end
+    100068: Bracko_GameModel7:L_front_ft_Anklebot_front_end
+    100070: Bracko_GameModel7:L_front_FT_AnkleBot_Main
+    100072: Bracko_GameModel7:L_front_Hip
+    100074: Bracko_GameModel7:L_front_Hip_Base1
+    100076: Bracko_GameModel7:L_front_Knee
+    100078: Bracko_GameModel7:L_Hip
+    100080: Bracko_GameModel7:L_Hip_Base
+    100082: Bracko_GameModel7:L_Jaw_Side
+    100084: Bracko_GameModel7:L_mid_Ankle
+    100086: Bracko_GameModel7:L_mid_AnkleBot_back_end
+    100088: Bracko_GameModel7:L_mid_Anklebot_front_end
+    100090: Bracko_GameModel7:L_mid_Anklebot_Main
+    100092: Bracko_GameModel7:L_mid_Hip
+    100094: Bracko_GameModel7:L_mid_Hip_Base
+    100096: Bracko_GameModel7:L_mid_Knee
+    100098: Bracko_GameModel7:Neck1
+    100100: Bracko_GameModel7:Neck2
+    100102: Bracko_GameModel7:Neck3
+    100104: Bracko_GameModel7:Neck4
+    100106: Bracko_GameModel7:Neck5
+    100108: Bracko_GameModel7:Neck6
+    100110: Bracko_GameModel7:Neck7
+    100112: Bracko_GameModel7:R_bk_Ankle
+    100114: Bracko_GameModel7:R_bk_AnkleBot_back_end
+    100116: Bracko_GameModel7:R_bk_Anklebot_front_end
+    100118: Bracko_GameModel7:R_bk_Anklebot_Main
+    100120: Bracko_GameModel7:R_bk_Knee
+    100122: Bracko_GameModel7:R_Eye
+    100124: Bracko_GameModel7:R_Eye 1
+    100126: Bracko_GameModel7:R_front_Ankle
+    100128: Bracko_GameModel7:R_Front_Anklebot_Main
+    100130: Bracko_GameModel7:R_front_bk_AnkleBot_back_end
+    100132: Bracko_GameModel7:R_front_ft_Anklebot_front_end
+    100134: Bracko_GameModel7:R_front_Hip
+    100136: Bracko_GameModel7:R_front_Hip_Base1
+    100138: Bracko_GameModel7:R_front_Knee
+    100140: Bracko_GameModel7:R_Hip
+    100142: Bracko_GameModel7:R_Hip_Base
+    100144: Bracko_GameModel7:R_Jaw_Side
+    100146: Bracko_GameModel7:R_mid_Ankle
+    100148: Bracko_GameModel7:R_mid_AnkleBot_back_end
+    100150: Bracko_GameModel7:R_mid_Anklebot_front_end
+    100152: Bracko_GameModel7:R_mid_Anklebot_Main
+    100154: Bracko_GameModel7:R_mid_Hip
+    100156: Bracko_GameModel7:R_mid_Hip_Base
+    100158: Bracko_GameModel7:R_mid_Knee
+    100160: Bracko_GameModel7:Tail1
+    100162: Bracko_GameModel7:Tail2
+    100164: Bracko_GameModel7:Tail3
+    100166: Bracko_GameModel7:Tail4
+    100168: Bracko_GameModel7:Tail5
+    100170: Bracko_GameModel7:Tail6
+    100172: Bracko_GameModel7:Tail7
+    100174: Bracko_GameModel7:Tail8
+    100176: //RootNode
+    400000: Bracko_GameModel7:Body1
+    400002: Bracko_GameModel7:Body2
+    400004: Bracko_GameModel7:Body3
+    400006: Bracko_GameModel7:Bracko_Base
+    400008: Bracko_GameModel7:Bracko_body_geo
+    400010: Bracko_GameModel7:Bracko_Mesh
+    400012: Bracko_GameModel7:Bracko_Tongue
+    400014: Bracko_GameModel7:Chest
+    400016: Bracko_GameModel7:Chest_front
+    400018: Bracko_GameModel7:ffd1Lattice
+    400020: Bracko_GameModel7:Head_Base
+    400022: Bracko_GameModel7:Head_Top_End
+    400024: Bracko_GameModel7:Head_Top_Start
+    400026: Bracko_GameModel7:Hip
+    400028: Bracko_GameModel7:Jaw
+    400030: Bracko_GameModel7:Jaw_End_Bottom
+    400032: Bracko_GameModel7:Jaw_End_Top
+    400034: Bracko_GameModel7:Jaw_Mid_Bottom
+    400036: Bracko_GameModel7:Jaw_Start_Bottom
+    400038: Bracko_GameModel7:Jaw_Start_Top
+    400040: Bracko_GameModel7:joint1
+    400042: Bracko_GameModel7:joint2
+    400044: Bracko_GameModel7:joint3
+    400046: Bracko_GameModel7:joint4
+    400048: Bracko_GameModel7:joint5
+    400050: Bracko_GameModel7:L_bk_Ankle
+    400052: Bracko_GameModel7:L_bk_AnkleBot_back_end
+    400054: Bracko_GameModel7:L_bk_Anklebot_front_end
+    400056: Bracko_GameModel7:L_bk_Anklebot_Main
+    400058: Bracko_GameModel7:L_bk_Knee
+    400060: Bracko_GameModel7:L_Eye
+    400062: Bracko_GameModel7:L_Eye 1
+    400064: Bracko_GameModel7:L_front_Ankle
+    400066: Bracko_GameModel7:L_front_bk_AnkleBot_back_end
+    400068: Bracko_GameModel7:L_front_ft_Anklebot_front_end
+    400070: Bracko_GameModel7:L_front_FT_AnkleBot_Main
+    400072: Bracko_GameModel7:L_front_Hip
+    400074: Bracko_GameModel7:L_front_Hip_Base1
+    400076: Bracko_GameModel7:L_front_Knee
+    400078: Bracko_GameModel7:L_Hip
+    400080: Bracko_GameModel7:L_Hip_Base
+    400082: Bracko_GameModel7:L_Jaw_Side
+    400084: Bracko_GameModel7:L_mid_Ankle
+    400086: Bracko_GameModel7:L_mid_AnkleBot_back_end
+    400088: Bracko_GameModel7:L_mid_Anklebot_front_end
+    400090: Bracko_GameModel7:L_mid_Anklebot_Main
+    400092: Bracko_GameModel7:L_mid_Hip
+    400094: Bracko_GameModel7:L_mid_Hip_Base
+    400096: Bracko_GameModel7:L_mid_Knee
+    400098: Bracko_GameModel7:Neck1
+    400100: Bracko_GameModel7:Neck2
+    400102: Bracko_GameModel7:Neck3
+    400104: Bracko_GameModel7:Neck4
+    400106: Bracko_GameModel7:Neck5
+    400108: Bracko_GameModel7:Neck6
+    400110: Bracko_GameModel7:Neck7
+    400112: Bracko_GameModel7:R_bk_Ankle
+    400114: Bracko_GameModel7:R_bk_AnkleBot_back_end
+    400116: Bracko_GameModel7:R_bk_Anklebot_front_end
+    400118: Bracko_GameModel7:R_bk_Anklebot_Main
+    400120: Bracko_GameModel7:R_bk_Knee
+    400122: Bracko_GameModel7:R_Eye
+    400124: Bracko_GameModel7:R_Eye 1
+    400126: Bracko_GameModel7:R_front_Ankle
+    400128: Bracko_GameModel7:R_Front_Anklebot_Main
+    400130: Bracko_GameModel7:R_front_bk_AnkleBot_back_end
+    400132: Bracko_GameModel7:R_front_ft_Anklebot_front_end
+    400134: Bracko_GameModel7:R_front_Hip
+    400136: Bracko_GameModel7:R_front_Hip_Base1
+    400138: Bracko_GameModel7:R_front_Knee
+    400140: Bracko_GameModel7:R_Hip
+    400142: Bracko_GameModel7:R_Hip_Base
+    400144: Bracko_GameModel7:R_Jaw_Side
+    400146: Bracko_GameModel7:R_mid_Ankle
+    400148: Bracko_GameModel7:R_mid_AnkleBot_back_end
+    400150: Bracko_GameModel7:R_mid_Anklebot_front_end
+    400152: Bracko_GameModel7:R_mid_Anklebot_Main
+    400154: Bracko_GameModel7:R_mid_Hip
+    400156: Bracko_GameModel7:R_mid_Hip_Base
+    400158: Bracko_GameModel7:R_mid_Knee
+    400160: Bracko_GameModel7:Tail1
+    400162: Bracko_GameModel7:Tail2
+    400164: Bracko_GameModel7:Tail3
+    400166: Bracko_GameModel7:Tail4
+    400168: Bracko_GameModel7:Tail5
+    400170: Bracko_GameModel7:Tail6
+    400172: Bracko_GameModel7:Tail7
+    400174: Bracko_GameModel7:Tail8
+    400176: //RootNode
+    2100000: Bracko_GameModel7_Bracko_Body
+    2100002: Bracko_GameModel7_Bracko_Eyes
+    4300000: Bracko_GameModel7:Bracko_Tongue
+    4300002: Bracko_GameModel7:Bracko_body_geo
+    4300004: Bracko_GameModel7:R_Eye
+    4300006: Bracko_GameModel7:L_Eye
+    7400000: Bracko_Walk
+    9500000: //RootNode
+    13700000: Bracko_GameModel7:Bracko_body_geo
+    13700002: Bracko_GameModel7:Bracko_Tongue
+    13700004: Bracko_GameModel7:L_Eye
+    13700006: Bracko_GameModel7:R_Eye
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Bracko_Walk
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

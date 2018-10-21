@@ -5,9 +5,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public GameObject crexModel;
+    public GameObject brackoModel;
 
 //    [HideInInspector]
     public bool crexPlaced = true;
+
+    public enum Fungisaur {
+        Crex, Bracko
+    }
+
+    public Fungisaur currentFungisaur = Fungisaur.Crex;
 
     [SerializeField]
     GameObject titleCard;
@@ -20,7 +27,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     GameObject balloonPrefab;
     GameObject balloonObject = null;
-    int balloonGameScore = 0;
+    public int balloonGameScore = 0;
     [SerializeField]
     UnityEngine.UI.Text balloonGameScoreUI;
     [SerializeField]
@@ -30,6 +37,8 @@ public class GameManager : MonoBehaviour {
 
 	[SerializeField]
 	UnityEngine.UI.Image balloonGameSpawnButton;
+    [SerializeField]
+    GameObject balloonGameScoreImage;
 
     [Header("Feed Game")]
     [SerializeField]
@@ -112,9 +121,9 @@ public class GameManager : MonoBehaviour {
 
                     // Find the difference in the distances between each frame.
                     float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
-                    crexModel.transform.localScale *= 1 - deltaMagnitudeDiff * Time.deltaTime * 2f;
-                    if (crexModel.transform.localScale.magnitude < 0.5196152f)
-                        crexModel.transform.localScale = Vector3.one * 0.3f;
+                    GetCurrentFungisaur().transform.localScale *= 1 - deltaMagnitudeDiff * Time.deltaTime * 2f;
+                    if (GetCurrentFungisaur().transform.localScale.magnitude < 0.5196152f)
+                        GetCurrentFungisaur().transform.localScale = Vector3.one * 0.3f;
                 }
                 break;
             case GameMode.NoUI:
@@ -131,29 +140,40 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
+    public GameObject GetCurrentFungisaur() {
+        if(currentFungisaur == Fungisaur.Crex) {
+            return crexModel;
+        } else if(currentFungisaur == Fungisaur.Bracko) {
+            return brackoModel;
+        } else {
+            Debug.LogError("Add case for fungisaur");
+            return null;
+        }
+    }
+
 	public void StartGame()
     {
         ShowSummonText();
         crexPlaced = false;
-        crexModel.SetActive(false);
+        GetCurrentFungisaur().SetActive(false);
         titleCard.gameObject.SetActive(false);
     }
 
     public void HomeButton() {
         crexPlaced = false;
-        crexModel.SetActive(false);
+        GetCurrentFungisaur().SetActive(false);
         titleCard.gameObject.SetActive(true);
-        crexModel.transform.parent.localPosition = new Vector3(0f, .5f, 0f);
-        crexModel.transform.localPosition = new Vector3(0f, .11f, 0f);
-        crexModel.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+        GetCurrentFungisaur().transform.parent.localPosition = new Vector3(0f, .5f, 0f);
+        GetCurrentFungisaur().transform.localPosition = new Vector3(0f, .11f, 0f);
+        GetCurrentFungisaur().transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
     }
 
     public void ResetButton() {
         crexPlaced = false;
-        crexModel.SetActive(false);
-        crexModel.transform.parent.localPosition = new Vector3(0f, .5f, 0f);
-        crexModel.transform.localPosition = new Vector3(0f, .11f, 0f);
-        crexModel.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+        GetCurrentFungisaur().SetActive(false);
+        GetCurrentFungisaur().transform.parent.localPosition = new Vector3(0f, .5f, 0f);
+        GetCurrentFungisaur().transform.localPosition = new Vector3(0f, .11f, 0f);
+        GetCurrentFungisaur().transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
         AudioManager.instance.Play("Poof");
     }
 
@@ -187,6 +207,19 @@ public class GameManager : MonoBehaviour {
 
     public void ToggleCharacterInfoScreen()
     {
+        if (characterInfoScreenUI.activeSelf)
+        {
+            characterInfoScreenUI.SetActive(false);
+        }
+        else
+        {
+            characterInfoScreenUI.SetActive(true);
+        }
+    }
+
+    public void ToggleCharacterInfoScreen(int fungisaurIndex)
+    {
+        currentFungisaur = (Fungisaur)fungisaurIndex;
         if (characterInfoScreenUI.activeSelf)
         {
             characterInfoScreenUI.SetActive(false);
@@ -248,6 +281,7 @@ public class GameManager : MonoBehaviour {
                 //SpawnBalloon();
                 //balloonGameToggleText.text = "Balloon Game End";
                 balloonGameSpawnButton.gameObject.SetActive(true);
+                balloonGameScoreImage.gameObject.SetActive(false);
                 break;
             default:
                 Debug.LogError("Unknown game state");
@@ -362,12 +396,12 @@ public class GameManager : MonoBehaviour {
         } else if(foodType == FeedButton.FoodType.Corn) {
             foodToSpawn = cornPrefab;
         }
-        Vector3 spawnPosition = crexModel.GetComponent<CrexBoop>().foodSpawnLocation.position;
+        Vector3 spawnPosition = GetCurrentFungisaur().GetComponent<CrexBoop>().foodSpawnLocation.position;
         foodObject = (GameObject)Instantiate(foodToSpawn, spawnPosition, Quaternion.identity);
         foodObject.transform.rotation = Random.rotation;
         foodGameScore = 0;
         GameManager.instance.feedGameSpawnButton.enabled = false;
-        foodObject.GetComponent<FoodAnimator>().EatFood(crexModel.GetComponent<CrexBoop>());
+        foodObject.GetComponent<FoodAnimator>().EatFood(GetCurrentFungisaur().GetComponent<CrexBoop>());
     }
 
     public void DespawnFood()
@@ -387,10 +421,17 @@ public class GameManager : MonoBehaviour {
 	}
 
     public void SpawnBalloon() {
-        Vector3 spawnPosition = crexModel.transform.position + Vector3.up * 1.5f;
+        Vector3 spawnPosition = GetCurrentFungisaur().transform.position + Vector3.up * 1.5f;
         balloonObject = (GameObject)Instantiate(balloonPrefab, spawnPosition, Quaternion.identity);
         balloonGameScore = 0;
         balloonGameSpawnButton.gameObject.SetActive(false);
+        balloonGameScoreImage.gameObject.SetActive(true);
+        UpdateBalloonGameScoreCounter();
+    }
+
+    void UpdateBalloonGameScoreCounter() {
+        balloonGameScoreImage.transform.Find("ScoreText").GetComponent<UnityEngine.UI.Text>().text = balloonGameScore.ToString();
+        balloonGameScoreImage.transform.Find("BorderImage").GetComponent<UnityEngine.UI.Image>().fillAmount = ((float)(balloonGameScore % 6))/6f;
     }
 
     public void DespawnBalloon() {
@@ -406,10 +447,12 @@ public class GameManager : MonoBehaviour {
     public void EndBalloonGame() {
         DespawnBalloon();
         balloonGameSpawnButton.gameObject.SetActive(true);
+        balloonGameScoreImage.gameObject.SetActive(false);
     }
 
     public void AddBalloonPoint() {
         balloonGameScore++;
+        UpdateBalloonGameScoreCounter();
         if (balloonGameScoreUI == null)
             Debug.LogError("balloonGameScoreUI is null");
         else
