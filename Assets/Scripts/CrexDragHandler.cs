@@ -5,7 +5,8 @@ using UnityEngine.EventSystems;
 
 public class CrexDragHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
 
-    public CrexBoop crexBoop;
+    [SerializeField]
+    CrexBoop crexBoop;
 
     public void OnPointerDown(PointerEventData eventData) {
         //Have to implement or OnPointerUp doesnt get called
@@ -22,14 +23,20 @@ public class CrexDragHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if ((eventData.position - eventData.pressPosition).magnitude < 25f)
         {
             DraggedDirection direction = DraggedDirection.Tap;
-            crexBoop.Swipe(direction);
+            if (crexBoop == null)
+                GameManager.instance.GetCurrentFungisaur().GetComponent<CrexBoop>().Swipe(direction);
+            else
+                crexBoop.Swipe(direction);
         }
         else
         {
             Vector3 dragVectorDirection = (eventData.position - eventData.pressPosition).normalized;
             //Debug.Log("norm + " + dragVectorDirection);
             DraggedDirection direction = GetDragDirection(dragVectorDirection);
-            crexBoop.Swipe(direction);
+            if (crexBoop == null)
+                GameManager.instance.GetCurrentFungisaur().GetComponent<CrexBoop>().Swipe(direction);
+            else
+                crexBoop.Swipe(direction);
         }
     }
 

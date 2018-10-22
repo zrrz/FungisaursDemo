@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Fungisaur
+{
+    Crex, Bracko
+}
+
 public class GameManager : MonoBehaviour {
 
     public GameObject crexModel;
@@ -10,9 +15,7 @@ public class GameManager : MonoBehaviour {
 //    [HideInInspector]
     public bool crexPlaced = true;
 
-    public enum Fungisaur {
-        Crex, Bracko
-    }
+
 
     public Fungisaur currentFungisaur = Fungisaur.Crex;
 
@@ -205,30 +208,30 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void ToggleCharacterInfoScreen()
-    {
-        if (characterInfoScreenUI.activeSelf)
-        {
-            characterInfoScreenUI.SetActive(false);
-        }
-        else
-        {
-            characterInfoScreenUI.SetActive(true);
-        }
-    }
+    //public void ToggleCharacterInfoScreen()
+    //{
+    //    if (characterInfoScreenUI.activeSelf)
+    //    {
+    //        characterInfoScreenUI.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        characterInfoScreenUI.SetActive(true);
+    //    }
+    //}
 
-    public void ToggleCharacterInfoScreen(int fungisaurIndex)
-    {
-        currentFungisaur = (Fungisaur)fungisaurIndex;
-        if (characterInfoScreenUI.activeSelf)
-        {
-            characterInfoScreenUI.SetActive(false);
-        }
-        else
-        {
-            characterInfoScreenUI.SetActive(true);
-        }
-    }
+    //public void ToggleCharacterInfoScreen(int fungisaurIndex)
+    //{
+    //    currentFungisaur = (Fungisaur)fungisaurIndex;
+    //    if (characterInfoScreenUI.activeSelf)
+    //    {
+    //        characterInfoScreenUI.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        characterInfoScreenUI.SetActive(true);
+    //    }
+    //}
 
     public void ToggleOptionsMenu() {
         if(optionsMenu1.activeSelf)
