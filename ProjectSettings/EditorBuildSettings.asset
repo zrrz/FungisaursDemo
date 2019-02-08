@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/UnityARKitPlugin/Examples/FocusSquare/FocusSquareScene.unity
     guid: 3c9ef824a7b95400bade362484e9b6af
   - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: e707fff6a89dd43348960875dbcb0777
+  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: dab434d1a6c446941be7c415298c80d7
   - enabled: 0

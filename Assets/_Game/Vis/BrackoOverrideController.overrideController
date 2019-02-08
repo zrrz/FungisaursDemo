@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: BrackoOverrideController
+  m_Controller: {fileID: 9100000, guid: 66ab91a5440fd624a9dc3025fac59b9e, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 93da143816659fa4cbfb57c5251046b4, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 149f94731aa6a438a96a672846c0bf88, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: fa8987a974fe1494ba8878e524a8f919, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 743b6a484003e415e8fbf81dc01ad471, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: c56d3f1f8987f7545a081e2627b11fc9, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 37b81f5cdfa4d478bad45746dbc8b919, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 636a3f8531a73944796e754196a712c5, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 7ccc7b28c2734418abe335d99676c857, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 26535606f8f01a24dbdddd3c2aabfea3, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: d44161479d6b94a7db635ef348156396, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 7eb62130c5d93ed4fabf329bbb0282a8, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 840d14977f8ec44878adcb2a90352233, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: dae832708d5c08d4cb162659931c66c5, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: fa80cec293b154aec937a16cdd582aa2, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 1ed0890049f0c354c90e8b1faa0127f5, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: f0722acf542ed4bb4be3997b8fe400cb, type: 3}
